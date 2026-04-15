@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Base palette — inspired by the original Naavo landing */
+  --color-bg: #e3e0d5;
+  --color-bg-soft: #d8d5ca;
+  --color-surface: #ffffff;
+  --color-surface-2: #f6f4ec;
+  --color-border: #d5d2c7;
+  --color-text: #0f0f0e;
+  --color-text-2: #5c5c58;
+  --color-text-3: #9a9a95;
+
+  --color-green: #1c6645;
+  --color-green-soft: #e5efe9;
+  --color-blue: #1b3d6e;
+  --color-amber: #7a4a1e;
+  --color-purple: #3d2278;
+  --color-red: #b4361f;
+  --color-warn: #b87911;
+
+  /* Dark theme tokens */
+  --color-bg-dark: #14120e;
+  --color-surface-dark: #1f1d18;
+  --color-surface-2-dark: #2a2822;
+  --color-border-dark: #302d25;
+  --color-text-dark: #f3f0e6;
+  --color-text-2-dark: #a8a59a;
+
+  /* Fonts */
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Syne', 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-fab: 0 16px 40px rgba(28, 102, 69, 0.35);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    min-height: 100dvh;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark);
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  /* Remove number input spinners */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .safe-pt {
+    padding-top: max(env(safe-area-inset-top), 1.5rem);
+  }
+  .safe-pb {
+    padding-bottom: max(env(safe-area-inset-bottom), 1.25rem);
+  }
+}
